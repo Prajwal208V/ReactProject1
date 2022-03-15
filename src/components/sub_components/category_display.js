@@ -34,7 +34,7 @@ const Categorydisplay = (props) => {
         </div>
       </div>
       <div className="category_right_box">
-        <TopPost index={index} />
+        <TopPost id={[index,category]} />
       </div>
     </div>
   )

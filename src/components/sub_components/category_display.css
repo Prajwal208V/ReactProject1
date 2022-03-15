@@ -2,15 +2,22 @@
     margin-top:3rem;
     width: 100%;
     display:flex;
+    justify-content:space-around;
 }
 .category_box img{
-    width:20rem;
-    height:15rem;
+    width:15rem;
+    height:13rem;
     float:left;
     margin-right:1rem;
 }
-.category_box{
+.category_left_box{
     width:50%;
+}
+.category_right_box{
+   width:30%;
+}
+.category_box{
+    width:100%;
     min-height:18rem;
     border-bottom: 2px solid rgba(211, 211, 211, 0.548);
     margin-bottom:1.8rem;

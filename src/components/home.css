@@ -1,6 +1,6 @@
 .left_main_artical img{
-    width:42rem;
-    height:25rem;
+    width:50rem;
+    height:28rem;
     border-radius:10px;
 }
 .home-container{
@@ -19,8 +19,8 @@
     gap:1rem;
 }
 .right_main_articals img{
-    width:26rem;
-    height:12rem;
+    width:30rem;
+    height:13.5rem;
     border-radius:10px;
 }
 .left_main_artical{
