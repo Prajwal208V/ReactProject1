@@ -1,11 +1,13 @@
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter ,Navigate} from 'react-router-dom';
 import Home from '../home';
 import Tourism from '../tourism/tourism';
 import Fitness from '../fitness/fitness';
 import Technology from '../technology/technology';
 import Bollywood from '../bollywood/bollywood';
 import Food from '../food/food';
+import Display from './display';
 import { Nav } from './nav';
+
 import './UI.css';
 
 export const Ui = () => {
@@ -17,12 +19,14 @@ export const Ui = () => {
             <BrowserRouter >
                 <Nav />
                 <Routes>
+                    <Route path='/' element={ <Navigate to='/Home' /> } />
                     <Route path='/Home' element={<Home />} />
                     <Route path='/Tourism' element={<Tourism />} />
                     <Route path='/Fitness' element={<Fitness />} />
                     <Route path='/Technology' element={<Technology />} />
                     <Route path='/Bollywood' element={<Bollywood />} />
-                    <Route path='/Food' element={<Food />} />
+                    <Route path='/Food' element={<Food />} /> 
+                    <Route path={`/individual/:`} element={<Display path={"pra"}/>} />
                 </Routes>
             </BrowserRouter>
         </div>

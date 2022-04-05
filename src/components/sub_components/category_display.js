@@ -12,6 +12,9 @@ const Categorydisplay = (props) => {
   var monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
 
+  const pathChnger = ([ind1, ind2]) => {
+    console.log(blockList[ind1][ind2]);
+  }
   return (
     <div className="category_container">
       <div className="category_left_box">
@@ -20,7 +23,7 @@ const Categorydisplay = (props) => {
           {
             blockList[index].map((element, ind) => {
               return (
-                <div key={element.id.toString()} className="category_box">
+                <div key={element.id.toString()} className="category_box" onClick={()=>pathChnger([index,ind]) }>
                   <img src={element.image} alt="artical" />
                   <div className="category_block">
                     <div className="category_title"><h3>{element.title}</h3></div>
@@ -34,7 +37,7 @@ const Categorydisplay = (props) => {
         </div>
       </div>
       <div className="category_right_box">
-        <TopPost id={[index,category]} />
+        <TopPost id={[index, category]} />
       </div>
     </div>
   )

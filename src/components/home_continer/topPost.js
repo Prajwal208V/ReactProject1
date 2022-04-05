@@ -25,7 +25,10 @@ const TopPost = () => {
         const titles = ['Toursim', 'Fitness', 'Bollywood', 'Food', 'Technology'];
         return titles[itr];
     }
-    var rank=1;
+    var rank = 1;
+    const pathChnger = ([ind1, ind2]) => {
+        console.log(blockList[ind1][ind2]);
+    }
     return (
         <div className="main-container">
             <h3><span className='lates_the'>Top</span> Post</h3>
@@ -34,7 +37,7 @@ const TopPost = () => {
                     counter.map((value, index) => {
                         let compoent_varible = caller(index);
                         return (
-                            <div className='post_box' key={index.toString()}>
+                            <div className='post_box' key={index.toString()} onClick={()=> pathChnger([compoent_varible[0],[compoent_varible[1]]])}>
                                 <div className="rank_box">
                                     <img src={blockList[compoent_varible[0]][compoent_varible[1]].image} alt="artical" />
                                     <h2>{rank++}</h2>

@@ -21,33 +21,36 @@ const LatestArtical = () => {
     const slicer = (para) => {
         return para.slice(0, 250);
     }
+    const pathChnger = ([ind1, ind2]) => {
+        console.log(blockList[ind1][ind2]);
+    }
     return (
         <div className={classes.container}>
             <h3><span className='lates_the'>Latest</span> Artical</h3>
             <div className={classes.latest_artical_container}>
                 <div className={classes.boxContiner}>
-                    <div className={classes.box01}>
+                    <div className={classes.box01} onClick={()=> pathChnger([iterator_category2,iterator_ineer1])}>
                         <img src={blockList[iterator_category2][iterator_ineer1].image} alt="artical" />
                         <div>
                             <div className={classes.box1Para}><p>{slicer(blockList[iterator_category2][iterator_ineer1].para)}.</p> </div>
                             <h5 className={classes.h5}><span className="title">{title_getr(iterator_category2)} </span> / {monthNames[date.getMonth()]} {date.getDate()} {date.getFullYear()}</h5>
                         </div>
                     </div>
-                    <div className={classes.box01}>
+                    <div className={classes.box01} onClick={()=> pathChnger([iterator_category3,iterator_ineer1,])}>
                         <img src={blockList[iterator_category3][iterator_ineer1].image} alt="artical" />
                         <div>
                             <div className={classes.box1Para}><p>{slicer(blockList[iterator_category3][iterator_ineer1].para)}.</p> </div>
                             <h5 className={classes.h5}><span className="title">{title_getr(iterator_category3)} </span> / {monthNames[date.getMonth()]} {date.getDate()} {date.getFullYear()}</h5>
                         </div>
                     </div>
-                    <div className={classes.box01}>
+                    <div className={classes.box01} onClick={()=> pathChnger([iterator_category1,iterator_ineer2,])}>
                         <img src={blockList[iterator_category1][iterator_ineer2].image} alt="artical" />
                         <div>
                             <div className={classes.box1Para}><p>{slicer(blockList[iterator_category1][iterator_ineer2].para)}.</p> </div>
                             <h5 className={classes.h5}><span className="title">{title_getr(iterator_category1)} </span> / {monthNames[date.getMonth()]} {date.getDate()} {date.getFullYear()}</h5>
                         </div>
                     </div>
-                    <div className={classes.box01}>
+                    <div className={classes.box01} onClick={()=> pathChnger([iterator_category2,iterator_ineer2,])}>
                         <img src={blockList[iterator_category2][iterator_ineer2].image} alt="artical" />
                         <div>
                             <div className={classes.box1Para}><p>{slicer(blockList[iterator_category2][iterator_ineer2].para)}.</p> </div>
@@ -55,7 +58,7 @@ const LatestArtical = () => {
                         </div>
 
                     </div>
-                    <div className={classes.box01}>
+                    <div className={classes.box01} onClick={()=> pathChnger([iterator_category3,iterator_ineer3,])}>
                         <img src={blockList[iterator_category3][iterator_ineer3].image} alt="artical" />
                         <div>
                             <div className={classes.box1Para}><p>{slicer(blockList[iterator_category3][iterator_ineer3].para)}.</p> </div>

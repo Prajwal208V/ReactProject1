@@ -11,22 +11,27 @@ const TopPost = (props) => {
         "July", "August", "September", "October", "November", "December"];
     var rank = 1;
     var new_arr = blockList[index].slice(10, 14);
+    const pathChnger = ([ind1, ind2]) => {
+        console.log(blockList[ind1][ind2]);
+    }
     return (
         <div className="top_list_container">
             <h2><span className="top">Top</span>Posts</h2>
             <div className="top_most_box">
-                <img src={blockList[index][9].image} alt={"blockList"} />
-                <div className="top_rank_box">
-                    <div className="top_post_block">
-                        <div className="top_post_title"><h5>{blockList[index][9].title}</h5></div>
-                        <h6 className="top_post_h6"><span className="title">{category} </span> / {monthNames[date.getMonth()]} {date.getDate()} {date.getFullYear()}</h6>
-                    </div >
-                    <h2 className="top_rank">{rank++}</h2>
+                <div onClick={() => pathChnger([index, 9])}>
+                    <img src={blockList[index][9].image} alt={"blockList"} />
+                    <div className="top_rank_box">
+                        <div className="top_post_block">
+                            <div className="top_post_title"><h5>{blockList[index][9].title}</h5></div>
+                            <h6 className="top_post_h6"><span className="title">{category} </span> / {monthNames[date.getMonth()]} {date.getDate()} {date.getFullYear()}</h6>
+                        </div >
+                        <h2 className="top_rank">{rank++}</h2>
+                    </div>
                 </div>
                 <div className="subTop_container">
-                    {new_arr.map((element, index) => {
+                    {new_arr.map((element, ind) => {
                         return (
-                            <div className="bottom_most_box" key={index.toString()}>
+                            <div className="bottom_most_box" key={ind.toString()} onClick={() => pathChnger([index, ind + 10])}>
                                 <img src={element.image} alt={"sub_post"} />
                                 <div className="top_most_title_box">
                                     <div className="top_most_title"><h3>{element.title}</h3></div>
