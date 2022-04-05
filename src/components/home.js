@@ -93,7 +93,6 @@ const Home = () => {
       <div className="TopPost_artical">
               <TopPost />
       </div>
-      <Display />
     </div>
   )
 }

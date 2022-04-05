@@ -11,7 +11,6 @@ export const Nav = () => {
                 <Link to='/categoty/Technology' className="nav-link">Technology</Link>
                 <Link to='/categoty/Bollywood' className="nav-link">Bollywood</Link>
                 <Link to='/categoty/Food' className="nav-link">Food</Link>
-
             </header>
         </div>
     )
