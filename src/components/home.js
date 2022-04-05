@@ -5,7 +5,6 @@ import LatestArtical from './home_continer/latest_artical';
 import TopPost from './home_continer/topPost';
 import {useNavigate }  from 'react-router-dom';
 import './home.css';
-import Display from './UI/display';
 import {useDispatch} from 'react-redux';
 import {Pathchanger} from './store/specificIteam';
 
