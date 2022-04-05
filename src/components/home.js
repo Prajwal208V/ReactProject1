@@ -3,27 +3,60 @@ import { BlockContext } from './block_context';
 import Latest from './home_continer/latest';
 import LatestArtical from './home_continer/latest_artical';
 import TopPost from './home_continer/topPost';
+import {useNavigate }  from 'react-router-dom';
 import './home.css';
+import Display from './UI/display';
+import {useDispatch} from 'react-redux';
+import {Pathchanger} from './store/specificIteam';
 
 const Home = () => {
   const [blockList] = useContext(BlockContext);
+  const dispatch=useDispatch();
+  const navigate = useNavigate();
+
   const date = new Date();
   var monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
-  // console.log(monthNames[date.getMonth()], date.getDate(),date.getFullYear());
+  
+
   const iterator_category1 = Math.floor(Math.random() * 4);
   const iterator_ineer1 = Math.floor(Math.random() * 14);
   const iterator_category2 = Math.floor(Math.random() * 4);
   const iterator_ineer2 = Math.floor(Math.random() * 14);
   const iterator_category3=Math.floor(Math.random() * 4);
-  // console.log(main_artical,latest_artical,post_artical);
+
   const title_getr = (itr) => {
     const titles = ['Toursim', 'Fitness', 'Bollywood', 'Food', 'Technology'];
     return titles[itr];
   }
+  
+
   const pathChnger=([ind1,ind2])=>{
-    console.log(blockList[ind1][ind2].id);
+    // console.log(blockList[ind1][ind2]);
+    dispatch(Pathchanger(blockList[ind1][ind2]));
+    const id=blockList[ind1][ind2].id;
+    let artical;
+    switch(true){
+       case (id>=1 && id<= 15):
+           artical ="Tourism";
+           break;
+       case (id>=16 && id<= 30):
+           artical ="Fitness";
+           break;
+       case (id>=31 && id<=45):
+           artical ="Bollywood";
+           break;
+       case (id>=46 && id<= 60):
+           artical ="Food";
+           break;
+       default:
+            artical ="Technology";
+            break;
+    }
+    navigate(`/categoty/${artical}/articalNo/${id}`);
   }
+
+
   return (
     <div className='home-container'>
       <div className='main_artical'>
@@ -60,6 +93,7 @@ const Home = () => {
       <div className="TopPost_artical">
               <TopPost />
       </div>
+      <Display />
     </div>
   )
 }

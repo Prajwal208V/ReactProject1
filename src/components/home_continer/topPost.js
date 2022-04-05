@@ -1,9 +1,14 @@
 import React, { useContext } from 'react';
 import { BlockContext } from '../block_context';
+import { useDispatch } from 'react-redux';
+import { Pathchanger } from '../store/specificIteam';
+import { useNavigate } from 'react-router-dom';
 import './topPost.css';
 
 const TopPost = () => {
+    const dispatch = useDispatch();
     const [blockList] = useContext(BlockContext);
+    const navigate = useNavigate();
     const date = new Date();
     var monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
@@ -17,7 +22,6 @@ const TopPost = () => {
 
 
     const caller = (ind) => {
-        console.log(counter[ind]);
         return counter[ind];
     }
 
@@ -27,7 +31,28 @@ const TopPost = () => {
     }
     var rank = 1;
     const pathChnger = ([ind1, ind2]) => {
-        console.log(blockList[ind1][ind2]);
+        // console.log(blockList[ind1][ind2]);
+        dispatch(Pathchanger(blockList[ind1][ind2]));
+        const id = blockList[ind1][ind2].id;
+        let artical;
+        switch (true) {
+            case (id >= 1 && id <= 15):
+                artical = "Tourism";
+                break;
+            case (id >= 16 && id <= 30):
+                artical = "Fitness";
+                break;
+            case (id >= 31 && id <= 45):
+                artical = "Bollywood";
+                break;
+            case (id >= 46 && id <= 60):
+                artical = "Food";
+                break;
+            default:
+                artical = "Technology";
+                break;
+        }
+        navigate(`/categoty/${artical}/articalNo/${id}`);
     }
     return (
         <div className="main-container">
@@ -37,7 +62,7 @@ const TopPost = () => {
                     counter.map((value, index) => {
                         let compoent_varible = caller(index);
                         return (
-                            <div className='post_box' key={index.toString()} onClick={()=> pathChnger([compoent_varible[0],[compoent_varible[1]]])}>
+                            <div className='post_box' key={index.toString()} onClick={() => pathChnger([compoent_varible[0], [compoent_varible[1]]])}>
                                 <div className="rank_box">
                                     <img src={blockList[compoent_varible[0]][compoent_varible[1]].image} alt="artical" />
                                     <h2>{rank++}</h2>

@@ -7,10 +7,31 @@ import Bollywood from '../bollywood/bollywood';
 import Food from '../food/food';
 import Display from './display';
 import { Nav } from './nav';
+import {useSelector} from 'react-redux';
 
 import './UI.css';
 
 export const Ui = () => {
+    const id =useSelector(select => select.artical_id);
+    console.log(id);
+    let artical;
+    switch(true){
+       case (id>=1 && id<= 15):
+           artical ="Tourism";
+           break;
+       case (id>=16 && id<= 30):
+           artical ="Fitness";
+           break;
+       case (id>=31 && id<=45):
+           artical ="Bollywood";
+           break;
+       case (id>=46 && id<= 60):
+           artical ="Food";
+           break;
+       default:
+            artical ="Technology";
+            break;
+    }
     return (
         <div className="container">
             <div className="title_box">
@@ -21,12 +42,13 @@ export const Ui = () => {
                 <Routes>
                     <Route path='/' element={ <Navigate to='/Home' /> } />
                     <Route path='/Home' element={<Home />} />
-                    <Route path='/Tourism' element={<Tourism />} />
-                    <Route path='/Fitness' element={<Fitness />} />
-                    <Route path='/Technology' element={<Technology />} />
-                    <Route path='/Bollywood' element={<Bollywood />} />
-                    <Route path='/Food' element={<Food />} /> 
-                    <Route path={`/individual/:`} element={<Display path={"pra"}/>} />
+                    <Route path='/categoty/Tourism' element={<Tourism />} />
+                    <Route path='/categoty/Fitness' element={<Fitness />} />
+                    <Route path='/categoty/Technology' element={<Technology />} />
+                    <Route path='/categoty/Bollywood' element={<Bollywood />} />
+                    <Route path='/categoty/Food' element={<Food />} /> 
+                    <Route path={`/categoty/:${artical}/articalNo/:${id}`} element={<Display />} />
+                    {/* <Route path='/categoty/Technology/articalNo/48' element={<Display />} /> */}
                 </Routes>
             </BrowserRouter>
         </div>

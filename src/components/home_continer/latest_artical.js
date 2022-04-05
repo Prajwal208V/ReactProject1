@@ -1,9 +1,15 @@
 import React, { useContext } from 'react';
 import { BlockContext } from '../block_context';
+import { useDispatch } from 'react-redux';
+import { Pathchanger } from '../store/specificIteam';
 import classes from './latest_artical.module.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const LatestArtical = () => {
+    const dispatch = useDispatch();
     const [blockList] = useContext(BlockContext);
+    const navigate = useNavigate();
     const date = new Date();
     var monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
@@ -22,35 +28,56 @@ const LatestArtical = () => {
         return para.slice(0, 250);
     }
     const pathChnger = ([ind1, ind2]) => {
-        console.log(blockList[ind1][ind2]);
+        // console.log(blockList[ind1][ind2]);
+        dispatch(Pathchanger(blockList[ind1][ind2]));
+        const id = blockList[ind1][ind2].id;
+        let artical;
+        switch (true) {
+            case (id >= 1 && id <= 15):
+                artical = "Tourism";
+                break;
+            case (id >= 16 && id <= 30):
+                artical = "Fitness";
+                break;
+            case (id >= 31 && id <= 45):
+                artical = "Bollywood";
+                break;
+            case (id >= 46 && id <= 60):
+                artical = "Food";
+                break;
+            default:
+                artical = "Technology";
+                break;
+        }
+        navigate(`/categoty/${artical}/articalNo/${id}`);
     }
     return (
         <div className={classes.container}>
             <h3><span className='lates_the'>Latest</span> Artical</h3>
             <div className={classes.latest_artical_container}>
                 <div className={classes.boxContiner}>
-                    <div className={classes.box01} onClick={()=> pathChnger([iterator_category2,iterator_ineer1])}>
+                    <div className={classes.box01} onClick={() => pathChnger([iterator_category2, iterator_ineer1])}>
                         <img src={blockList[iterator_category2][iterator_ineer1].image} alt="artical" />
                         <div>
                             <div className={classes.box1Para}><p>{slicer(blockList[iterator_category2][iterator_ineer1].para)}.</p> </div>
                             <h5 className={classes.h5}><span className="title">{title_getr(iterator_category2)} </span> / {monthNames[date.getMonth()]} {date.getDate()} {date.getFullYear()}</h5>
                         </div>
                     </div>
-                    <div className={classes.box01} onClick={()=> pathChnger([iterator_category3,iterator_ineer1,])}>
+                    <div className={classes.box01} onClick={() => pathChnger([iterator_category3, iterator_ineer1,])}>
                         <img src={blockList[iterator_category3][iterator_ineer1].image} alt="artical" />
                         <div>
                             <div className={classes.box1Para}><p>{slicer(blockList[iterator_category3][iterator_ineer1].para)}.</p> </div>
                             <h5 className={classes.h5}><span className="title">{title_getr(iterator_category3)} </span> / {monthNames[date.getMonth()]} {date.getDate()} {date.getFullYear()}</h5>
                         </div>
                     </div>
-                    <div className={classes.box01} onClick={()=> pathChnger([iterator_category1,iterator_ineer2,])}>
+                    <div className={classes.box01} onClick={() => pathChnger([iterator_category1, iterator_ineer2,])}>
                         <img src={blockList[iterator_category1][iterator_ineer2].image} alt="artical" />
                         <div>
                             <div className={classes.box1Para}><p>{slicer(blockList[iterator_category1][iterator_ineer2].para)}.</p> </div>
                             <h5 className={classes.h5}><span className="title">{title_getr(iterator_category1)} </span> / {monthNames[date.getMonth()]} {date.getDate()} {date.getFullYear()}</h5>
                         </div>
                     </div>
-                    <div className={classes.box01} onClick={()=> pathChnger([iterator_category2,iterator_ineer2,])}>
+                    <div className={classes.box01} onClick={() => pathChnger([iterator_category2, iterator_ineer2,])}>
                         <img src={blockList[iterator_category2][iterator_ineer2].image} alt="artical" />
                         <div>
                             <div className={classes.box1Para}><p>{slicer(blockList[iterator_category2][iterator_ineer2].para)}.</p> </div>
@@ -58,7 +85,7 @@ const LatestArtical = () => {
                         </div>
 
                     </div>
-                    <div className={classes.box01} onClick={()=> pathChnger([iterator_category3,iterator_ineer3,])}>
+                    <div className={classes.box01} onClick={() => pathChnger([iterator_category3, iterator_ineer3,])}>
                         <img src={blockList[iterator_category3][iterator_ineer3].image} alt="artical" />
                         <div>
                             <div className={classes.box1Para}><p>{slicer(blockList[iterator_category3][iterator_ineer3].para)}.</p> </div>

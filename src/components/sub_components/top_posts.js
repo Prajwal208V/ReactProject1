@@ -1,8 +1,13 @@
 import React, { useContext } from 'react';
 import { BlockContext } from '../block_context';
+import { useDispatch } from 'react-redux';
+import { Pathchanger } from '../store/specificIteam';
+import { useNavigate } from 'react-router-dom';
 import './top_posts.css';
 
 const TopPost = (props) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const index = props.id[0];
     const category = props.id[1];
     const [blockList] = useContext(BlockContext);
@@ -12,7 +17,28 @@ const TopPost = (props) => {
     var rank = 1;
     var new_arr = blockList[index].slice(10, 14);
     const pathChnger = ([ind1, ind2]) => {
-        console.log(blockList[ind1][ind2]);
+        // console.log(blockList[ind1][ind2]);
+        dispatch(Pathchanger(blockList[ind1][ind2]));
+        const id = blockList[ind1][ind2].id;
+        let artical;
+        switch (true) {
+            case (id >= 1 && id <= 15):
+                artical = "Tourism";
+                break;
+            case (id >= 16 && id <= 30):
+                artical = "Fitness";
+                break;
+            case (id >= 31 && id <= 45):
+                artical = "Bollywood";
+                break;
+            case (id >= 46 && id <= 60):
+                artical = "Food";
+                break;
+            default:
+                artical = "Technology";
+                break;
+        }
+        navigate(`/categoty/${artical}/articalNo/${id}`);
     }
     return (
         <div className="top_list_container">
